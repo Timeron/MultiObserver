@@ -1,0 +1,20 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="komputronik" class="com.timeron.MultiObserver.shop.bean.Komputronik">
+		<property name="shopName" value="Komputronik" />
+		<property name="url" value="http://www.komputronik.pl/" />
+		<property name="shopId" value="5" />
+
+		<property name="articlesDivXPath" value="/html/body/div[9]/div/div[@class='mainColumnContainer productsListContainer']/div[@class='productsContainer']/div[@class='product ']" />
+		<property name="nextXPath" value="/html/body/div[9]/div/div[2]/div[@class='listOptionsContainer']/div[@class='content listPagesContainer last']/ul/li[@class='next']/a" />
+		<property name="nextUrl" value="http://www.komputronik.pl/category/5022/laptopy.html&#63;sb=&amp;sd=&amp;p=!&amp;sa=&amp;showProducts=1" />
+		<property name="productNameXPath" value="/div[@class='header']/div[@class='name']/a" />
+		<property name="productURLXPath" value="/div[@class='header']/div[@class='name']/a" />
+		<property name="productPriceXPath" value="/div[@class='content']/div[@class='pricing']/div[@class='priceValue']/div[@class='altFontFace price']" />
+		<property name="productOldPriceXPath" value="/div[@class='content']/div[@class='pricing']/div[@class='priceValue']/div[@class='altFontFace oldPrice']" /> 
+	</bean>
+
+</beans>

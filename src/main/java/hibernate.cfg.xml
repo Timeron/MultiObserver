@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM 
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect
+		</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver
+		</property>
+		
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.connection.useUnicode">yes</property>
+    	<property name="hibernate.connection.characterEncoding">UTF-8</property>
+
+		<!-- Assume test is the database name -->
+<!-- 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/datatest?characterEncoding=utf8</property> -->
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/nexus?characterEncoding=utf8</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password"></property>
+
+		<!-- List of XML mapping files -->
+		<mapping class="com.timeron.MultiObserver.dao.entity.ObservedLinksPackage" />
+		<mapping class="com.timeron.MultiObserver.dao.entity.ObservedObject" />
+		<mapping class="com.timeron.MultiObserver.dao.entity.ObservedSite" />
+		<mapping class="com.timeron.MultiObserver.dao.entity.ObservedSiteHistory" />
+		<mapping class="com.timeron.MultiObserver.dao.entity.ProductCategory" />
+		<mapping class="com.timeron.MultiObserver.dao.entity.Site" />
+		<mapping class="com.timeron.MultiObserver.dao.entity.SiteType" />
+
+	</session-factory>
+</hibernate-configuration>

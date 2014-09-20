@@ -1,0 +1,21 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="saturn" class="com.timeron.MultiObserver.shop.bean.Saturn">
+		<property name="shopName" value="Saturn" />
+		<property name="url" value="http://www.saturn.pl/" />
+		<property name="shopId" value="3" />
+		<property name="maxArticleOnSite" value="20" />
+
+		<property name="articlesDivXPath" value="/html/body/div[@id='main_wrapper']/section[@id='main-section']/section/section/div[@class='result-box']/div" />
+		<property name="nextXPath" value="//*/a[@class='page_next']" />
+		<property name="productNameXPath" value="/div[@class='desc']/h2/a" />
+		<property name="productURLXPath" value="/div[@class='desc']/h2/a" />
+		<property name="productPriceXPath" value="/div[@class='price-box']/div[@class='clearfix priceContainer']" />
+		<property name="productPriceElementXPath" value="/span/em" />
+		<property name="productOldPriceXPath" value="/div[@class='price-box']/div/div/strong" />
+	</bean>
+
+</beans>

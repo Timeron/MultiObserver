@@ -1,0 +1,19 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="arest" class="com.timeron.MultiObserver.shop.bean.Arest">
+		<property name="shopName" value="Arest" />
+		<property name="url" value="http://www.arest.pl" />
+		<property name="shopId" value="4" />
+
+		<property name="articlesDivXPath" value="/html/body/div[3]/div/table[2]/tbody/tr/td/div/table/tbody/tr/td[2]/div/div[3]/table/tbody/tr/td[@class='td-info']" />
+		<property name="nextXPath" value="/html/body/div[3]/div/table[2]/tbody/tr/td/div/table/tbody/tr/td[2]/div/div[3]/div/div/a" />
+		<property name="nextXPathPostfix" value="&amp;photos=5" />
+		<property name="productNameXPath" value="/div[2]/a" />
+		<property name="productURLXPath" value="/div[2]/a" />
+		<property name="productPriceXPath" value="/div[4]/div/div" />
+	</bean>
+
+</beans>

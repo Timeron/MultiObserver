@@ -1,0 +1,22 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="ikea" class="com.timeron.MultiObserver.shop.bean.Ikea">
+		<property name="shopName" value="Ikea" />
+		<property name="url" value="http://www.ikea.com/" />
+		<property name="shopId" value="6" />
+
+		<property name="articlesDivXPath" value="//*/div[@id='productLists']/div[@class='gridRow']/div" />  
+		<property name="nextXPath" value="" />
+		<property name="productNameXPath" value="/div[2]/a/div" />
+		<property name="productURLXPath" value="/div[2]/a" />
+		<property name="productPriceXPath" value="//*/div[@class='price regularPrice']" />
+		<property name="productOldPriceXPath" value="//*/div[@class='previousPrice']" />
+	</bean>
+
+</beans>
+
+
+<!-- /html/body/div[3]/div/div[@id='main'] -->
