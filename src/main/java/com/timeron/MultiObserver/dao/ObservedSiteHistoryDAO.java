@@ -1,7 +1,11 @@
 package com.timeron.MultiObserver.dao;
 
-import org.apache.log4j.Logger;
+import java.util.List;
 
+import org.apache.log4j.Logger;
+import org.hibernate.Query;
+
+import com.timeron.MultiObserver.dao.entity.ObservedSite;
 import com.timeron.MultiObserver.dao.entity.ObservedSiteHistory;
 
 public class ObservedSiteHistoryDAO extends HibernateDao{
@@ -15,6 +19,26 @@ public class ObservedSiteHistoryDAO extends HibernateDao{
 		session.getTransaction().commit();
 		session.close();
 		log.info("ObservedSite saved");
+		
+	}
+
+	@SuppressWarnings("unchecked")
+	public boolean priceChanged(ObservedSiteHistory newObservedSiteHistory) {
+		List<ObservedSiteHistory> observedSiteHistories;
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		String hql = "FROM ObservedSiteHistory WHERE observedSite = '"+newObservedSiteHistory.getObservedSite()+"' ORDER BY timestamp DESC";
+		Query query = session.createQuery(hql);
+		query.setMaxResults(1);
+		observedSiteHistories = (List<ObservedSiteHistory>) query.list();
+		session.close();
+		
+		if(newObservedSiteHistory.getPrice() != observedSiteHistories.get(0).getPrice()){
+			return true;
+		}else{
+			return false;
+		}
+		
 		
 	}
 

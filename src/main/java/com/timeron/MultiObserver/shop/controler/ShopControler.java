@@ -158,6 +158,7 @@ public class ShopControler implements ShopControlerInterface {
 
 	public void saveObservedSites() {
 		ObservedSiteDAO observedSiteDAO = new ObservedSiteDAO();
+		ObservedSiteHistoryDAO observedSiteHistoryDAO = new ObservedSiteHistoryDAO();
 		for(int index=0; index<this.observedSiteList.size(); index++){
 			LOG.info("Dodano adres z hash = "+observedSiteList.get(index).getHashUrl());
 			//Sprawdzamy czy to nowy produkt z tej strony
@@ -170,9 +171,15 @@ public class ShopControler implements ShopControlerInterface {
 				//Produkty mogą być źle posortowane na stronie. Nie zapisujemy produktów które w wyniku przesunięcia na liście pojawiły się dwa razy.
 				if(!observedSiteDAO.siteWasAddedDoday(observedSiteList.get(index))){
 					this.shop.addArticleCounter();
-					observedSiteList.get(index).setId(observedSiteDAO.getId(observedSiteList.get(index)));
-					observedSiteList.get(index).setTimestamp(new Date());
-					observedSiteDAO.update(observedSiteList.get(index));
+					if(observedSiteHistoryDAO.priceChanged(observedSiteList.get(index).getObservedSiteHistory().get(0))){
+						observedSiteList.get(index).setId(observedSiteDAO.getId(observedSiteList.get(index)));
+						observedSiteList.get(index).setTimestamp(new Date());
+						observedSiteDAO.update(observedSiteList.get(index));
+						this.shop.addUpdatePriceCounter();
+						LOG.info("Nowa cena dodana dla produktu: "+observedSiteList.get(index).getArticleName());
+					}else{
+						LOG.info("Cena się nie zmieniła");
+					}
 				}else{
 					this.shop.addMovementCounter();
 					LOG.info("Wykryto przesunięcie na liście");

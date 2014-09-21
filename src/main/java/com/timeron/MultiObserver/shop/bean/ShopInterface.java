@@ -38,9 +38,9 @@ public interface ShopInterface {
 	
 	public void setNewArticleCounter(int newArticleCounter);
 	
-	public int getNewPriceCounter();
+	public int getUpdatedPricesCounter();
 	
-	public void setNewPriceCounter(int newPriceCounter);
+	public void setUpdatedPricesCounter(int updatedPricesCounter);
 	
 	public int getSiteCounter();
 	

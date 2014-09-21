@@ -30,12 +30,12 @@ public class Shop implements ShopInterface{
 	
 	//private Integer maxArticleOnSite = 99999;
 	
-	protected int articleCounter = 0;
-	protected int newArticleCounter = 0;
-	protected int newPriceCounter = 0;
-	protected int siteCounter = 0;
-	protected int linkCounter = 0;
-	protected int movementCounter = 0;
+	protected int articleCounter = 0; //wszystkie zdobyte atrykuły
+	protected int newArticleCounter = 0; //tylko nowe artykuły
+	protected int updatedPricesCounter = 0; //tylko artykuły które zmieniły cenę
+	protected int siteCounter = 0; //rezygnujemy z tego
+	protected int linkCounter = 0; //linki zbadane
+	protected int movementCounter = 0; //powtarzające się artukuły przez błedne listowanie na stronie
 	
 	/**
 	 * Getters & Setters
@@ -122,12 +122,12 @@ public class Shop implements ShopInterface{
 		this.newArticleCounter = newArticleCounter;
 	}
 
-	public int getNewPriceCounter() {
-		return newPriceCounter;
+	public int getUpdatedPricesCounter() {
+		return updatedPricesCounter;
 	}
 
-	public void setNewPriceCounter(int newPriceCounter) {
-		this.newPriceCounter = newPriceCounter;
+	public void setUpdatedPricesCounter(int updatedPricesCounter) {
+		this.updatedPricesCounter = updatedPricesCounter;
 	}
 
 	public int getSiteCounter() {
@@ -182,8 +182,8 @@ public class Shop implements ShopInterface{
 		this.newArticleCounter++;
 	}
 
-	public void addNewPriceCounter() {
-		this.newPriceCounter++;
+	public void addUpdatePriceCounter() {
+		this.updatedPricesCounter++;
 	}
 
 	public void addSiteCounter() {
@@ -224,11 +224,11 @@ public class Shop implements ShopInterface{
 		LOG.info("#                                               #");
 		LOG.info("#################################################");
 		LOG.info("#");
-		LOG.info("#   Articles:     "+articleCounter);
-		LOG.info("#   New Articles: "+newArticleCounter);
-		LOG.info("#   Links:        "+linkCounter);
-		LOG.info("#   Sites:        "+siteCounter);
-		LOG.info("#   Movement:     "+movementCounter);
+		LOG.info("#   Articles:      "+articleCounter);
+		LOG.info("#   New Articles:  "+newArticleCounter);
+		LOG.info("#   Updated price: "+updatedPricesCounter);
+		LOG.info("#   Links:         "+linkCounter);
+		LOG.info("#   Movement:      "+movementCounter);
 		LOG.info("#");
 		LOG.info("#");
 		LOG.info("#");
