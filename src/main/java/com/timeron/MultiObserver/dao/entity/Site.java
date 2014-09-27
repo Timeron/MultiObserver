@@ -75,13 +75,4 @@ public class Site {
 			List<ObservedLinksPackage> observedLinksPackage) {
 		this.observedLinksPackage = observedLinksPackage;
 	}
-
-	@Override
-	public String toString() {
-		return "Site [id=" + id + ", name=" + name + ", url=" + url
-				+ ", valid=" + valid + ", timestamp=" + timestamp
-				+ ", observedLinksPackage=" + observedLinksPackage + "]";
-	}
-	
-	
 }

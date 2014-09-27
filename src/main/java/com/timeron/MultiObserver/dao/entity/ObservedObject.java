@@ -56,12 +56,5 @@ public class ObservedObject {
 		this.observedSite = observedSite;
 	}
 
-	@Override
-	public String toString() {
-		return "ObservedObject [id=" + id + ", name=" + name + ", timestamp="
-				+ timestamp + ", observedSite=" + observedSite + "]";
-	}
-	
-	
 	
 }
