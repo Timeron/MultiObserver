@@ -9,7 +9,7 @@ import com.timeron.MultiObserver.dao.entity.ObservedSite;
 import com.timeron.MultiObserver.dao.entity.ObservedSiteHistory;
 
 public class ObservedSiteHistoryDAO extends HibernateDao{
-
+	
 	static Logger log = Logger.getLogger(ObservedSiteHistoryDAO.class.getName());
 	
 	public void save(ObservedSiteHistory observedSiteHistory) {
@@ -27,18 +27,21 @@ public class ObservedSiteHistoryDAO extends HibernateDao{
 		List<ObservedSiteHistory> observedSiteHistories;
 		session = sessionFactory.openSession();
 		session.beginTransaction();
-		String hql = "FROM ObservedSiteHistory WHERE observedSite = '"+newObservedSiteHistory.getObservedSite()+"' ORDER BY timestamp DESC";
+		String hql = "FROM ObservedSiteHistory WHERE observedSite = '"+newObservedSiteHistory.getObservedSite().getId()+"' ORDER BY timestamp DESC";
 		Query query = session.createQuery(hql);
 		query.setMaxResults(1);
 		observedSiteHistories = (List<ObservedSiteHistory>) query.list();
 		session.close();
 		
-		if(newObservedSiteHistory.getPrice() != observedSiteHistories.get(0).getPrice()){
-			return true;
+		if(!observedSiteHistories.isEmpty()){
+			if(newObservedSiteHistory.getPrice() != observedSiteHistories.get(0).getPrice() || newObservedSiteHistory.getOldPrice() != observedSiteHistories.get(0).getOldPrice()){
+				return true;
+			}else{
+				return false;
+			}
 		}else{
-			return false;
+			return true;
 		}
-		
 		
 	}
 

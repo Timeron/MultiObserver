@@ -90,7 +90,7 @@ public class ObservedSiteDAO extends HibernateDao {
 		return observedSites.get(0).getId();
 	}
 
-	@SuppressWarnings({ "deprecation", "unchecked" })
+	@SuppressWarnings("unchecked")
 	public boolean siteWasAddedDoday(ObservedSite observedSite) {
 		List<ObservedSite> observedSites;
 		
