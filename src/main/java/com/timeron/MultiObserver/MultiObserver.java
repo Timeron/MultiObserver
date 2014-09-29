@@ -6,12 +6,14 @@ import java.util.Date;
 
 import org.apache.log4j.Logger;
 
+import com.timeron.MultiObserver.stoper.Stoper;
+
 public class MultiObserver {
 	private static final Logger LOG = Logger.getLogger(MultiObserver.class);
 
 	private static MultiObserverControler multiObserverControler = new MultiObserverControler();
-	public static DateFormat timerFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	public static Date start = new Date();
+	public static DateFormat timerFormat = new SimpleDateFormat("HH:mm:ss");
+	public static long start = System.currentTimeMillis();
 	
 	public static void main(String[] args) {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -32,8 +34,9 @@ public class MultiObserver {
 		multiObserverControler.runMultiObserver();
 		//old
 		//articleControler = new ArticleControler();
-		Date stop = new Date();
-		LOG.info("Łączny czas: "+ timerFormat.format(start.getTime()-stop.getTime()));
+		long stop = System.currentTimeMillis();
+		Stoper stoper = new Stoper(stop - start);
+		LOG.info("Łączny czas: "+ (stoper.getTime()));
 
 	}
 }
