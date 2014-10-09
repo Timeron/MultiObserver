@@ -16,16 +16,24 @@ public class Stoper {
 	}
 	
 	public String getTime(long time){
-		sec = (int) time/1000;
-		min = (int) time/60000;
-		hour = (int) time/360000;
-		return hour+":"+min+":"+sec;
+		time = (int) time/1000;
+		hour = (int) time/(60*60);
+		time = time%(60*60);
+		min = (int) time/(60);
+		time = time%60;
+		sec = (int) time;
+		
+		return hour+"h :"+min+"min:"+sec+"sec";
 	}
 	
 	public String getTime(){
-		sec = (int) this.time/1000;
-		min = (int) this.time/60000;
-		hour = (int) this.time/360000;
-		return hour+":"+min+":"+sec;
+		time = (int) time/1000;
+		hour = (int) time/(60*60);
+		time = time%(60*60);
+		min = (int) time/(60);
+		time = time%60;
+		sec = (int) time;
+		
+		return hour+"h :"+min+"min:"+sec+"sec";
 	}
 }

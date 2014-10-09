@@ -37,7 +37,6 @@ public class MultiObserver {
 		long stop = System.currentTimeMillis();
 		Stoper stoper = new Stoper(stop - start);
 		LOG.info("Łączny czas: "+ (stoper.getTime()));
-
 	}
 }
 
