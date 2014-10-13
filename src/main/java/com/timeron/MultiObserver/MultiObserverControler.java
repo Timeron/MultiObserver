@@ -17,7 +17,7 @@ public class MultiObserverControler {
 
 	private ShopControler moreleControler;
 //	private ShopControler arestControler;
-//	private ShopControler komputronikControler;
+	private ShopControler komputronikControler;
 //	private ShopControler mediaMarktControler;
 //	private ShopControler saturnControler;
 //	private ShopControler ikeaControler;
@@ -40,14 +40,14 @@ public class MultiObserverControler {
 
 		moreleControler = new MoreleControler();
 //		arestControler = new ArestControler();
-//		komputronikControler = new KomputronikControler();
+		komputronikControler = new KomputronikControler();
 //		mediaMarktControler = new MediaMarktControler();
 //		saturnControler = new SaturnControler();
 //		ikeaControler = new IkeaControler();
 
 		shopControlersList.add(moreleControler);
 //		shopControlersList.add(arestControler);
-//		shopControlersList.add(komputronikControler);
+		shopControlersList.add(komputronikControler);
 //		shopControlersList.add(mediaMarktControler);
 //		shopControlersList.add(saturnControler);
 //		shopControlersList.add(ikeaControler);

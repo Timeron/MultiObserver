@@ -206,7 +206,7 @@ public class Shop implements ShopInterface{
 		ObservedLinksPackageDAO observedLinksPackageDAO = new ObservedLinksPackageDAO();
 		List<ObservedLinksPackage> ObservedLinksPackage;
 		
-		ObservedLinksPackage = observedLinksPackageDAO.getAll();
+		ObservedLinksPackage = observedLinksPackageDAO.getAll(this.shopId);
 		
 		return ObservedLinksPackage;
 	}

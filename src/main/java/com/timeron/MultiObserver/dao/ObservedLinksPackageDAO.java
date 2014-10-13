@@ -11,13 +11,13 @@ import com.timeron.MultiObserver.dao.entity.ObservedLinksPackage;
 public class ObservedLinksPackageDAO extends HibernateDao{
 
 	@SuppressWarnings("unchecked")
-	public List<ObservedLinksPackage> getAll(){
+	public List<ObservedLinksPackage> getAll(int shopId){
 		List<ObservedLinksPackage> observedLinksPackages = new ArrayList<ObservedLinksPackage>();
 		
 		session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-		String hql = "FROM ObservedLinksPackage";
+		String hql = "FROM ObservedLinksPackage WHERE site ='"+shopId+"'";
 		
 		Query query = session.createQuery(hql);
 		observedLinksPackages = (List<ObservedLinksPackage>) query.list();
