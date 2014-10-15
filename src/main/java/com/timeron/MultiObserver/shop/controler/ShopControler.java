@@ -42,6 +42,7 @@ public class ShopControler implements ShopControlerInterface {
 		this.observedSiteList = new ArrayList<ObservedSite>();
 		
 		for (ObservedLinksPackage observedLinksPackage : observedLinksPackages) {
+			prepareControler();
 			downloadObservedSitesFromUrl(observedLinksPackage, observedLinksPackage.getUrl());
 		}
 	}
@@ -198,6 +199,10 @@ public class ShopControler implements ShopControlerInterface {
 				observedSiteHistoryDAO.save(observedSiteHistory);
 			}
 		}
+		
+	}
+	
+	protected void prepareControler(){
 		
 	}
 	

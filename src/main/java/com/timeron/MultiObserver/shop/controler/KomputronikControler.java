@@ -39,7 +39,10 @@ public class KomputronikControler extends ShopControler {
 
 			if (!url.isEmpty()) {
 				siteCounter++;
-				url = url.substring(0, url.length() - 1);
+				url = url.substring(0, url.length()-1);
+				if(url.indexOf('&')>0){
+					url = url.substring(0, url.indexOf('&'));
+				}
 				url = url + "&p=" + siteCounter;
 				LOG.info("Next site's url: " + url);
 				return url;
@@ -49,6 +52,10 @@ public class KomputronikControler extends ShopControler {
 			}
 		}
 		return null;
+	}
+	
+	protected void prepareControler(){
+		this.siteCounter = 1;
 	}
 
 }

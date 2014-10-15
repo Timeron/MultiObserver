@@ -11,7 +11,6 @@ public interface ShopControlerInterface {
 	
 	public void runObserver();
 	
-	
 //	public void ShopCounter();
 //	public int getArticles();
 //	public void addArticles();
