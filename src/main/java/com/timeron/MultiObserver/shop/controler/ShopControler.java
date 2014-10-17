@@ -53,7 +53,7 @@ public class ShopControler implements ShopControlerInterface {
 		do{
 			Downloader downloader = new Downloader();
 			HtmlPage htmlPage = downloader.getSite(next);
-	
+			int objects = 0;
 			// get next site HtmlAnchor and links to the articles
 			List<DomNode> articlesDiv = (List<DomNode>) htmlPage.getByXPath(shop.getArticlesDivXPath());
 			if (!shop.getNextXPath().isEmpty()) {
@@ -62,28 +62,31 @@ public class ShopControler implements ShopControlerInterface {
 	
 			// jeśli artukuł jest dostępny na stronie
 			if (!articlesDiv.isEmpty()) {
+				
 				// dla każdego artukułu budujemy obiekt
-				for (DomNode articleDiv : articlesDiv) {
-					if (!articleDiv.getTextContent().isEmpty()) {
-						ObservedSite observedSite = new ObservedSite();
-						ObservedSiteHistory observedSiteHistory = new ObservedSiteHistory();
-						List<ObservedSiteHistory> observedSiteHistorys = new ArrayList<ObservedSiteHistory>();
-	
-						observedSite = parseObservedSite(articleDiv);
-						observedSite.setObservedLinksPackage(observedLinksPackage);
-						observedSiteHistory = parseObservedSiteHistory(articleDiv);
-						observedSiteHistory.setObservedSite(observedSite);
-						observedSiteHistory.setTimestamp(new Date());
-						observedSiteHistorys.add(observedSiteHistory);
-						observedSite.setObservedSiteHistory(observedSiteHistorys);
-						this.observedSiteList.add(observedSite);
-					} else {
-						LOG.info("Site is empty!");
-					}
-				}
+//				for (DomNode articleDiv : articlesDiv) {
+				objects = getArticlesFromDivs(observedLinksPackage, articlesDiv);
+//					if (!articleDiv.getTextContent().isEmpty()) {
+//						ObservedSite observedSite = new ObservedSite();
+//						ObservedSiteHistory observedSiteHistory = new ObservedSiteHistory();
+//						List<ObservedSiteHistory> observedSiteHistorys = new ArrayList<ObservedSiteHistory>();
+//	
+//						observedSite = parseObservedSite(articleDiv);
+//						observedSite.setObservedLinksPackage(observedLinksPackage);
+//						observedSiteHistory = parseObservedSiteHistory(articleDiv);
+//						observedSiteHistory.setObservedSite(observedSite);
+//						observedSiteHistory.setTimestamp(new Date());
+//						observedSiteHistorys.add(observedSiteHistory);
+//						observedSite.setObservedSiteHistory(observedSiteHistorys);
+//						this.observedSiteList.add(observedSite);
+//					} else {
+//						LOG.info("Site is empty!");
+//					}
+//				}
 			}
 			this.shop.addLinkCounter();
-			next = checkNextSite(nextHtmlAnchor);
+			//jeśli na stronie nie ma już obiektów a przycisk next jest dostępny to przewij
+			next = (objects > 0) ? checkNextSite(nextHtmlAnchor) : null;
 		}while(next!=null);
 	}
 
@@ -102,6 +105,30 @@ public class ShopControler implements ShopControlerInterface {
 			return null;
 		}
 
+	}
+	
+	protected int getArticlesFromDivs(ObservedLinksPackage observedLinksPackage, List<DomNode> articlesDiv){
+		int objects = 0;
+		for (DomNode articleDiv : articlesDiv) {
+			if (!articleDiv.getTextContent().isEmpty()) {
+				ObservedSite observedSite = new ObservedSite();
+				ObservedSiteHistory observedSiteHistory = new ObservedSiteHistory();
+				List<ObservedSiteHistory> observedSiteHistorys = new ArrayList<ObservedSiteHistory>();
+	
+				observedSite = parseObservedSite(articleDiv);
+				observedSite.setObservedLinksPackage(observedLinksPackage);
+				observedSiteHistory = parseObservedSiteHistory(articleDiv);
+				observedSiteHistory.setObservedSite(observedSite);
+				observedSiteHistory.setTimestamp(new Date());
+				observedSiteHistorys.add(observedSiteHistory);
+				observedSite.setObservedSiteHistory(observedSiteHistorys);
+				this.observedSiteList.add(observedSite);
+				objects++;
+			} else {
+				LOG.info("Site is empty!");
+			}
+		}
+		return objects;
 	}
 
 	@SuppressWarnings("unchecked")
