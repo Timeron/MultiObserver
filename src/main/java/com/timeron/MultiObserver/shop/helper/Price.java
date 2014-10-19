@@ -60,8 +60,13 @@ public class Price {
 		stringPrice = stringPrice.replaceAll(" ", "");
 		stringPrice = stringPrice.replaceAll("\\s", "");
 		stringPrice = stringPrice.replaceAll("-", "");
+		stringPrice = stringPrice.replaceAll("Zl", "");
 		LOG.info("Price converted to: " + stringPrice);
-		floatPrice = Float.parseFloat(stringPrice);
+		try{
+			floatPrice = Float.parseFloat(stringPrice);
+		}catch(NumberFormatException ex){
+			ex.printStackTrace();
+		}
 		return floatPrice;
 	}
 
