@@ -31,7 +31,6 @@ public class ShopControler implements ShopControlerInterface {
 
 	private static final Logger LOG = Logger.getLogger(ShopControler.class);
 	protected Shop shop = null;
-	//protected List<HtmlAnchor> next = null;
 	
 	protected List<ObservedSite> observedSiteList; 
 	protected List<ObservedLinksPackage> observedLinksPackages;
@@ -62,27 +61,8 @@ public class ShopControler implements ShopControlerInterface {
 	
 			// jeśli artukuł jest dostępny na stronie
 			if (!articlesDiv.isEmpty()) {
-				
 				// dla każdego artukułu budujemy obiekt
-//				for (DomNode articleDiv : articlesDiv) {
 				objects = getArticlesFromDivs(observedLinksPackage, articlesDiv);
-//					if (!articleDiv.getTextContent().isEmpty()) {
-//						ObservedSite observedSite = new ObservedSite();
-//						ObservedSiteHistory observedSiteHistory = new ObservedSiteHistory();
-//						List<ObservedSiteHistory> observedSiteHistorys = new ArrayList<ObservedSiteHistory>();
-//	
-//						observedSite = parseObservedSite(articleDiv);
-//						observedSite.setObservedLinksPackage(observedLinksPackage);
-//						observedSiteHistory = parseObservedSiteHistory(articleDiv);
-//						observedSiteHistory.setObservedSite(observedSite);
-//						observedSiteHistory.setTimestamp(new Date());
-//						observedSiteHistorys.add(observedSiteHistory);
-//						observedSite.setObservedSiteHistory(observedSiteHistorys);
-//						this.observedSiteList.add(observedSite);
-//					} else {
-//						LOG.info("Site is empty!");
-//					}
-//				}
 			}
 			this.shop.addLinkCounter();
 			//jeśli na stronie nie ma już obiektów a przycisk next jest dostępny to przewij
@@ -124,6 +104,7 @@ public class ShopControler implements ShopControlerInterface {
 				observedSite.setObservedSiteHistory(observedSiteHistorys);
 				this.observedSiteList.add(observedSite);
 				objects++;
+				LOG.info("New Object: "+observedSite.getArticleName()+" with price: "+observedSiteHistory.getPrice());
 			} else {
 				LOG.info("Site is empty!");
 			}

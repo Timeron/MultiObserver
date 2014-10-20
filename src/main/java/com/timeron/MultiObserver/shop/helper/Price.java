@@ -46,7 +46,6 @@ public class Price {
 	}
 
 	private Float convertStringToFloat(String stringPrice) {
-		LOG.info("Price to convert: " + stringPrice);
 		float floatPrice = 0;
 		
 		if (stringPrice.contains("(")) {
@@ -61,7 +60,6 @@ public class Price {
 		stringPrice = stringPrice.replaceAll("\\s", "");
 		stringPrice = stringPrice.replaceAll("-", "");
 		stringPrice = stringPrice.replaceAll("Zl", "");
-		LOG.info("Price converted to: " + stringPrice);
 		try{
 			floatPrice = Float.parseFloat(stringPrice);
 		}catch(NumberFormatException ex){

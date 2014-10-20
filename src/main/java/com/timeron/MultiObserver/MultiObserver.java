@@ -30,10 +30,9 @@ public class MultiObserver {
 	
 	private static void getObservedSites(){
 		LOG.info("method: getObservedSites");
-		//new 
+		
 		multiObserverControler.runMultiObserver();
-		//old
-		//articleControler = new ArticleControler();
+		
 		long stop = System.currentTimeMillis();
 		Stoper stoper = new Stoper(stop - start);
 		LOG.info("Łączny czas: "+ (stoper.getTime()));
