@@ -3,12 +3,8 @@ package com.timeron.MultiObserver;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.timeron.MultiObserver.shop.controler.ArestControler;
-import com.timeron.MultiObserver.shop.controler.IkeaControler;
 import com.timeron.MultiObserver.shop.controler.KomputronikControler;
-import com.timeron.MultiObserver.shop.controler.MediaMarktControler;
 import com.timeron.MultiObserver.shop.controler.MoreleControler;
-import com.timeron.MultiObserver.shop.controler.SaturnControler;
 import com.timeron.MultiObserver.shop.controler.ShopControler;
 
 public class MultiObserverControler {

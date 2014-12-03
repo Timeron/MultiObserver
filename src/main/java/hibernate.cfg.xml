@@ -8,11 +8,11 @@
 		</property>
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver
 		</property>
-		
+
 		<property name="hibernate.hbm2ddl.auto">update</property>
-		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.show_sql">false</property>
 		<property name="hibernate.connection.useUnicode">yes</property>
-    	<property name="hibernate.connection.characterEncoding">UTF-8</property>
+		<property name="hibernate.connection.characterEncoding">UTF-8</property>
 
 		<!-- Assume test is the database name -->
 <!-- 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/datatest?characterEncoding=utf8</property> -->
@@ -28,6 +28,7 @@
 		<mapping class="com.timeron.MultiObserver.dao.entity.ProductCategory" />
 		<mapping class="com.timeron.MultiObserver.dao.entity.Site" />
 		<mapping class="com.timeron.MultiObserver.dao.entity.SiteType" />
+		<mapping class="com.timeron.MultiObserver.dao.entity.ProposedProductKay" />
 
 	</session-factory>
 </hibernate-configuration>

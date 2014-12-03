@@ -27,9 +27,10 @@ public class Shop implements ShopInterface{
 	private String productURLXPath = "";
 	private String productPriceXPath = "";
 	private String productOldPriceXPath = "";
+	private String productKayXPath = "";
 	
 	//private Integer maxArticleOnSite = 99999;
-	
+
 	protected int articleCounter = 0; //wszystkie zdobyte atrykuły
 	protected int newArticleCounter = 0; //tylko nowe artykuły
 	protected int updatedPricesCounter = 0; //tylko artykuły które zmieniły cenę
@@ -104,6 +105,22 @@ public class Shop implements ShopInterface{
 
 	public void setProductURLXPath(String productURLXPath) {
 		this.productURLXPath = productURLXPath;
+	}
+	
+	public String getProductKayXPath() {
+		return productKayXPath;
+	}
+
+	public void setProductKayXPath(String productKayXPath) {
+		this.productKayXPath = productKayXPath;
+	}
+
+	public int getMovementCounter() {
+		return movementCounter;
+	}
+
+	public void setMovementCounter(int movementCounter) {
+		this.movementCounter = movementCounter;
 	}
 	
 	public int getArticleCounter() {

@@ -1,13 +1,14 @@
 package com.timeron.MultiObserver.dao;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import org.hibernate.SessionException;
+import org.hibernate.criterion.Restrictions;
 
 import com.timeron.MultiObserver.dao.entity.ObservedSite;
 
@@ -116,6 +117,45 @@ public class ObservedSiteDAO extends HibernateDao {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<ObservedSite> getSitesWithoutProductKay() throws SessionException {
+		log.info("session");
+		List<ObservedSite> observedSite = null;
+		
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+//		String hql = "FROM ObservedSite";
+//		
+//		Query query = session.createQuery(hql);
+//		observedSite = (List<ObservedSite>) query.list();
+//		
+//		session.close();
+//		
+//		if (observedSite.size() > 0) {
+//			return observedSite;
+//		} else {
+//			List<ObservedSite> emptyList = Collections.emptyList();
+//			return emptyList;
+//		}
+
+	
+		try{
+			session = sessionFactory.openSession();
+			transaction = session.beginTransaction();
+			criteria = session.createCriteria(ObservedSite.class);
+			criteria.add(Restrictions.isNull("observedObject"));
+			observedSite = criteria.list();
+		}catch(HibernateException ex){
+			ex.printStackTrace();
+		}
+		finally{
+			session.close();
+		}
+		
+		return observedSite;
+		
+	}
 	
 
 }

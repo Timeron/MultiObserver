@@ -34,6 +34,14 @@ public class ShopControler implements ShopControlerInterface {
 	
 	protected List<ObservedSite> observedSiteList; 
 	protected List<ObservedLinksPackage> observedLinksPackages;
+	
+	public Shop getShop() {
+		return shop;
+	}
+
+	public void setShop(Shop shop) {
+		this.shop = shop;
+	}
 
 	public void runObserver() {
 		// pobieramy wszystkie linki pakietów

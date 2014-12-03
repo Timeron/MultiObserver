@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -27,8 +26,8 @@ public class ObservedSite {
 	@Column(name="hash_url")
 	private Integer hashUrl;
 	private Date timestamp;
+	private boolean approvedProductKay = false;
 	
-	@ElementCollection
 	@OneToMany(mappedBy="observedSite", cascade=CascadeType.ALL)
 	private List<ObservedSiteHistory> observedSiteHistory;
 	
@@ -39,6 +38,9 @@ public class ObservedSite {
 	@ManyToOne
 	@JoinColumn(name="observed_object_id")
 	private ObservedObject observedObject;
+	
+	@OneToMany(mappedBy="observedSite", cascade=CascadeType.ALL)
+	private List<ProposedProductKay> proposedProductKay;
 
 	public Integer getId() {
 		return id;
@@ -80,6 +82,14 @@ public class ObservedSite {
 		this.timestamp = timestamp;
 	}
 
+	public boolean isApprovedProductKay() {
+		return approvedProductKay;
+	}
+
+	public void setApprovedProductKay(boolean approvedProductKay) {
+		this.approvedProductKay = approvedProductKay;
+	}
+
 	public List<ObservedSiteHistory> getObservedSiteHistory() {
 		return observedSiteHistory;
 	}
@@ -103,7 +113,13 @@ public class ObservedSite {
 	public void setObservedObject(ObservedObject observedObject) {
 		this.observedObject = observedObject;
 	}
-	
-	
+
+	public List<ProposedProductKay> getProposedProductKay() {
+		return proposedProductKay;
+	}
+
+	public void setProposedProductKay(List<ProposedProductKay> proposedProductKay) {
+		this.proposedProductKay = proposedProductKay;
+	}
 	
 }

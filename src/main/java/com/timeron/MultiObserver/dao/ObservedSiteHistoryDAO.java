@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 
-import com.timeron.MultiObserver.dao.entity.ObservedSite;
 import com.timeron.MultiObserver.dao.entity.ObservedSiteHistory;
 
 public class ObservedSiteHistoryDAO extends HibernateDao{
