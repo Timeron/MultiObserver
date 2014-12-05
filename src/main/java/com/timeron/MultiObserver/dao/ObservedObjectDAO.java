@@ -1,10 +1,13 @@
 package com.timeron.MultiObserver.dao;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 
+import com.timeron.MultiObserver.dao.entity.ObservedLinksPackage;
 import com.timeron.MultiObserver.dao.entity.ObservedObject;
 
 public class ObservedObjectDAO extends HibernateDao{
@@ -36,6 +39,23 @@ public class ObservedObjectDAO extends HibernateDao{
 		observedObjects = (List<ObservedObject>) query.list();
 		session.close();
 		return observedObjects.get(0).getId();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<ObservedObject> getAll() {
+		List<ObservedObject> observedObjects = new ArrayList<ObservedObject>();
+		
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		observedObjects = session.createCriteria(ObservedObject.class).list();
+		session.close();
+		
+		if (observedObjects.size() > 0) {
+			return observedObjects;
+		} else {
+			List<ObservedObject> emptyList = Collections.emptyList();
+			return emptyList;
+		}
 	}
 
 }

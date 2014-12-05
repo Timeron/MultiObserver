@@ -1,11 +1,10 @@
 package com.timeron.MultiObserver.dao;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Query;
+import org.hibernate.criterion.Restrictions;
 
 import com.timeron.MultiObserver.dao.entity.ObservedObject;
 import com.timeron.MultiObserver.dao.entity.ObservedSite;
@@ -28,12 +27,14 @@ public class ProposedProductKayDAO extends HibernateDao{
 	@SuppressWarnings("unchecked")
 	public List<ProposedProductKay> getByObservedSiteAndObject(ObservedSite observedSite,
 			ObservedObject observedObject) {
-		List<ProposedProductKay> proposedProductKay = new ArrayList<ProposedProductKay>();
 		session = sessionFactory.openSession();
 		session.beginTransaction();
-		String hql = "FROM observedObject WHERE observedSite = '"+observedSite.getId()+"' AND observedObject = '"+observedObject.getId()+"'";
-		Query query = session.createQuery(hql);
-		proposedProductKay = (List<ProposedProductKay>) query.list();
+		
+		List<ProposedProductKay> proposedProductKay = session.createCriteria(ProposedProductKay.class)
+				.add(Restrictions.eq("observedSite", observedSite))
+				.add(Restrictions.eq("observedObject", observedObject))
+				.list();
+						
 		session.close();
 		
 		if (proposedProductKay.size() > 0) {
@@ -42,5 +43,14 @@ public class ProposedProductKayDAO extends HibernateDao{
 			List<ProposedProductKay> emptyList = Collections.emptyList();
 			return emptyList;
 		}
+	}
+
+	public void update(ProposedProductKay proposedProductKay) {
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		session.update(proposedProductKay);
+		session.getTransaction().commit();
+		session.close();
+		
 	}
 }
