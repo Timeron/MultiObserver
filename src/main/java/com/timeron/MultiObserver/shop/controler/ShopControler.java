@@ -28,6 +28,9 @@ import com.timeron.MultiObserver.shop.helper.Price;
  *
  */
 public class ShopControler implements ShopControlerInterface {
+	
+	protected static final String EMPTY_NAME = "No name on site";
+	protected static final String EMPTY_URL = "No url on site";
 
 	private static final Logger LOG = Logger.getLogger(ShopControler.class);
 	protected Shop shop = null;
@@ -112,7 +115,16 @@ public class ShopControler implements ShopControlerInterface {
 				observedSite.setObservedSiteHistory(observedSiteHistorys);
 				this.observedSiteList.add(observedSite);
 				objects++;
+				
+				if(observedSite.getArticleName().isEmpty() || observedSite.getArticleName() == null){
+					shop.addError(EMPTY_NAME);
+				}
+				if(observedSite.getUrl().isEmpty() || observedSite.getUrl() == null){
+					shop.addError(EMPTY_URL);
+				}
+				
 				LOG.info("New Object: "+observedSite.getArticleName()+" with price: "+observedSiteHistory.getPrice());
+				
 			} else {
 				LOG.info("Site is empty!");
 			}

@@ -1,5 +1,6 @@
 package com.timeron.MultiObserver.shop.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -37,6 +38,9 @@ public class Shop implements ShopInterface{
 	protected int siteCounter = 0; //rezygnujemy z tego
 	protected int linkCounter = 0; //linki zbadane
 	protected int movementCounter = 0; //powtarzające się artukuły przez błedne listowanie na stronie
+	
+	//błędy
+	protected List<String> errors = new ArrayList<String>();
 	
 	/**
 	 * Getters & Setters
@@ -215,6 +219,14 @@ public class Shop implements ShopInterface{
 		this.movementCounter++;
 	}
 	
+	public List<String> getErrors() {
+		return errors;
+	}
+
+	public void setErrors(List<String> errors) {
+		this.errors = errors;
+	}
+
 	/**
 	 * Methods
 	 */
@@ -247,14 +259,23 @@ public class Shop implements ShopInterface{
 		LOG.info("#   Links:         "+linkCounter);
 		LOG.info("#   Movement:      "+movementCounter);
 		LOG.info("#");
-		LOG.info("#");
+		if(errors.size()>0){
+			LOG.info("#  Errors:");
+			for(String error : errors){
+				LOG.info("#  "+error);
+			}
+		}
 		LOG.info("#");
 		LOG.info("#################################################");
 		LOG.info("");
 	
 	}
 
-
+	public void addError(String error){
+		if(!this.errors.contains(error)){
+			this.errors.add(error);
+		}
+	}
 
 
 }
