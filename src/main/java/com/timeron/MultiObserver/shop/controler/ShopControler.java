@@ -116,10 +116,10 @@ public class ShopControler implements ShopControlerInterface {
 				this.observedSiteList.add(observedSite);
 				objects++;
 				
-				if(observedSite.getArticleName().isEmpty() || observedSite.getArticleName() == null){
+				if( observedSite.getArticleName() == null || observedSite.getArticleName().isEmpty()){
 					shop.addError(EMPTY_NAME);
 				}
-				if(observedSite.getUrl().isEmpty() || observedSite.getUrl() == null){
+				if(observedSite.getUrl() == null || observedSite.getUrl().isEmpty() ){
 					shop.addError(EMPTY_URL);
 				}
 				
@@ -151,15 +151,19 @@ public class ShopControler implements ShopControlerInterface {
 	@SuppressWarnings("unchecked")
 	private ObservedSiteHistory parseObservedSiteHistory(DomNode articleDiv) {
 		List<DomNode> price = (List<DomNode>) articleDiv.getByXPath(articleDiv.getCanonicalXPath() + shop.getProductPriceXPath());
-		List<DomNode> oldPrice = (List<DomNode>) articleDiv.getByXPath(articleDiv.getCanonicalXPath()+ shop.getProductOldPriceXPath());
+		
 
 		ObservedSiteHistory observedSiteHistory = new ObservedSiteHistory();
 
 		if (!price.isEmpty()) {
 			observedSiteHistory.setPrice(buildPrice(price.get(0)).getPrice());
 		}
-		if (!oldPrice.isEmpty()) {
-			observedSiteHistory.setOldPrice(buildPrice(oldPrice.get(0)).getPrice());
+		if (shop.getProductOldPriceXPath() != null && !shop.getProductOldPriceXPath().isEmpty()) {
+			List<DomNode> oldPrice = (List<DomNode>) articleDiv.getByXPath(articleDiv.getCanonicalXPath() + shop.getProductOldPriceXPath());
+			if (!oldPrice.isEmpty() && shop.getProductOldPriceXPath() != null) {
+				observedSiteHistory.setOldPrice(buildPrice(oldPrice.get(0))
+						.getPrice());
+			}
 		}
 
 		return observedSiteHistory;

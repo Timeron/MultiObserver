@@ -6,14 +6,14 @@
 	<bean id="arest" class="com.timeron.MultiObserver.shop.bean.Arest">
 		<property name="shopName" value="Arest" />
 		<property name="url" value="http://www.arest.pl" />
-		<property name="shopId" value="4" />
+		<property name="shopId" value="3" />
 
-		<property name="articlesDivXPath" value="/html/body/div[3]/div/table[2]/tbody/tr/td/div/table/tbody/tr/td[2]/div/div[3]/table/tbody/tr/td[@class='td-info']" />
+		<property name="articlesDivXPath" value="//*[@class='l']" />
 		<property name="nextXPath" value="/html/body/div[3]/div/table[2]/tbody/tr/td/div/table/tbody/tr/td[2]/div/div[3]/div/div/a" />
 		<property name="nextXPathPostfix" value="&amp;photos=5" />
-		<property name="productNameXPath" value="/div[2]/a" />
-		<property name="productURLXPath" value="/div[2]/a" />
-		<property name="productPriceXPath" value="/div[4]/div/div" />
+		<property name="productNameXPath" value="/td[@class='nazwa']/div/a" />
+		<property name="productURLXPath" value="/td[@class='nazwa']/div/a" />
+		<property name="productPriceXPath" value="/td[@class='cena']/a" />
 	</bean>
 
 </beans>
