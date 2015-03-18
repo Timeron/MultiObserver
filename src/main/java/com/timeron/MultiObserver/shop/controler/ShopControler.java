@@ -178,7 +178,10 @@ public class ShopControler implements ShopControlerInterface {
 	protected String buildArticleUrl(Object objectUrl) {
 		String url = "";
 		HtmlAnchor articleLink = (HtmlAnchor) objectUrl;
-		url = articleLink.getHrefAttribute();
+		if(!articleLink.getHrefAttribute().contains(shop.getUrl())){
+			url = shop.getUrl();
+		}
+		url += articleLink.getHrefAttribute();
 		return url;
 	}
 

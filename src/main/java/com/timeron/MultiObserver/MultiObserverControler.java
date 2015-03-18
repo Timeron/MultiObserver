@@ -5,17 +5,19 @@ import java.util.List;
 
 import com.timeron.MultiObserver.shop.controler.ArestControler;
 import com.timeron.MultiObserver.shop.controler.KomputronikControler;
+import com.timeron.MultiObserver.shop.controler.MediaMarktControler;
 import com.timeron.MultiObserver.shop.controler.MoreleControler;
+import com.timeron.MultiObserver.shop.controler.SaturnControler;
 import com.timeron.MultiObserver.shop.controler.ShopControler;
 
 public class MultiObserverControler {
 
 	private List<ShopControler> shopControlersList;
 
-	private ShopControler moreleControler;
-	private ShopControler arestControler;
-	private ShopControler komputronikControler;
-//	private ShopControler mediaMarktControler;
+//	private ShopControler moreleControler;
+//	private ShopControler arestControler;
+//	private ShopControler komputronikControler;
+	private ShopControler mediaMarktControler;
 //	private ShopControler saturnControler;
 //	private ShopControler ikeaControler;
 
@@ -35,17 +37,17 @@ public class MultiObserverControler {
 	private List<ShopControler> getAllShops() {
 		List<ShopControler> shopControlersList = new ArrayList<ShopControler>();
 
-		moreleControler = new MoreleControler();
-		arestControler = new ArestControler();
-		komputronikControler = new KomputronikControler();
-//		mediaMarktControler = new MediaMarktControler();
+//		moreleControler = new MoreleControler();
+//		arestControler = new ArestControler();
+//		komputronikControler = new KomputronikControler();
+		mediaMarktControler = new MediaMarktControler();
 //		saturnControler = new SaturnControler();
 //		ikeaControler = new IkeaControler();
 
-		shopControlersList.add(moreleControler);
-		shopControlersList.add(arestControler);
-		shopControlersList.add(komputronikControler);
-//		shopControlersList.add(mediaMarktControler);
+//		shopControlersList.add(moreleControler);
+//		shopControlersList.add(arestControler);
+//		shopControlersList.add(komputronikControler);
+		shopControlersList.add(mediaMarktControler);
 //		shopControlersList.add(saturnControler);
 //		shopControlersList.add(ikeaControler);
 

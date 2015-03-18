@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.timeron.MultiObserver.shop.bean.Arest;
 
 public class ArestControler extends ShopControler {
@@ -23,13 +22,6 @@ public class ArestControler extends ShopControler {
 				"arest.xml");
 		this.arest = (Arest) context.getBean("arest");
 		this.shop = (Arest) arest;
-	}
-	
-	protected String buildArticleUrl(Object objectUrl) {
-		String url = "http://www.arest.pl";
-		HtmlAnchor articleLink = (HtmlAnchor) objectUrl;
-		url += articleLink.getHrefAttribute();
-		return url;
 	}
 
 }

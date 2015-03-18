@@ -9,6 +9,7 @@ import com.timeron.MultiObserver.shop.bean.Morele;
 
 public class MoreleControler extends ShopControler{
 
+	@SuppressWarnings("unused")
 	private static final Logger LOG = LoggerFactory
 			.getLogger(MoreleControler.class);
 
