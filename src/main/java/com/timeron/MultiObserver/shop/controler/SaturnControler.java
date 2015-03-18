@@ -10,6 +10,7 @@ import com.timeron.MultiObserver.shop.bean.Saturn;
 
 public class SaturnControler extends MediaCompanyControler{
 
+	@SuppressWarnings("unused")
 	private static final Logger LOG = LoggerFactory
 			.getLogger(MediaMarktControler.class);
 	

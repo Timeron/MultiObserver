@@ -5,16 +5,15 @@
 
 	<bean id="saturn" class="com.timeron.MultiObserver.shop.bean.Saturn">
 		<property name="shopName" value="Saturn" />
-		<property name="url" value="http://www.saturn.pl/" />
-		<property name="shopId" value="3" />
+		<property name="url" value="http://www.saturn.pl" />
+		<property name="shopId" value="7" />
 		<property name="maxArticleOnSite" value="20" />
 
-		<property name="articlesDivXPath" value="/html/body/div[@id='main_wrapper']/section[@id='main-section']/section/section/div[@class='result-box']/div" />
+		<property name="articlesDivXPath" value="//*[contains(@class,'product-item')]" />
 		<property name="nextXPath" value="//*/a[@class='page_next']" />
 		<property name="productNameXPath" value="/div[@class='desc']/h2/a" />
 		<property name="productURLXPath" value="/div[@class='desc']/h2/a" />
 		<property name="productPriceXPath" value="/div[@class='price-box']/div[@class='clearfix priceContainer']" />
-		<property name="productPriceElementXPath" value="/span/em" />
 		<property name="productOldPriceXPath" value="/div[@class='price-box']/div/div/strong" />
 	</bean>
 
