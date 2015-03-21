@@ -6,9 +6,9 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.timeron.MultiObserver.dao.ObservedLinksPackageDAO;
-import com.timeron.MultiObserver.dao.entity.ObservedLinksPackage;
-import com.timeron.MultiObserver.dao.entity.Site;
+import com.timeron.NexusDatabaseLibrary.Entity.ObservedLinksPackage;
+import com.timeron.NexusDatabaseLibrary.Entity.Site;
+import com.timeron.NexusDatabaseLibrary.dao.ObservedLinksPackageDAO;
 
 public class Shop implements ShopInterface{
 	

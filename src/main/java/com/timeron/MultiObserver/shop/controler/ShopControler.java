@@ -10,14 +10,14 @@ import org.apache.log4j.Logger;
 import com.gargoylesoftware.htmlunit.html.DomNode;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import com.timeron.MultiObserver.dao.ObservedSiteDAO;
-import com.timeron.MultiObserver.dao.ObservedSiteHistoryDAO;
-import com.timeron.MultiObserver.dao.entity.ObservedLinksPackage;
-import com.timeron.MultiObserver.dao.entity.ObservedSite;
-import com.timeron.MultiObserver.dao.entity.ObservedSiteHistory;
 import com.timeron.MultiObserver.downloader.Downloader;
 import com.timeron.MultiObserver.shop.bean.Shop;
 import com.timeron.MultiObserver.shop.helper.Price;
+import com.timeron.NexusDatabaseLibrary.Entity.ObservedLinksPackage;
+import com.timeron.NexusDatabaseLibrary.Entity.ObservedSite;
+import com.timeron.NexusDatabaseLibrary.Entity.ObservedSiteHistory;
+import com.timeron.NexusDatabaseLibrary.dao.ObservedSiteDAO;
+import com.timeron.NexusDatabaseLibrary.dao.ObservedSiteHistoryDAO;
 
 /**
  * Klasa dziedziczona przez wszystkie kontrolery sklepów. Zarządza działaniami

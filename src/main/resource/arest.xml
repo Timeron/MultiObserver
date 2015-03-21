@@ -10,7 +10,6 @@
 
 		<property name="articlesDivXPath" value="//*[@class='l']" />
 		<property name="nextXPath" value="/html/body/div[3]/div/table[2]/tbody/tr/td/div/table/tbody/tr/td[2]/div/div[3]/div/div/a" />
-		<property name="nextXPathPostfix" value="&amp;photos=5" />
 		<property name="productNameXPath" value="/td[@class='nazwa']/div/a" />
 		<property name="productURLXPath" value="/td[@class='nazwa']/div/a" />
 		<property name="productPriceXPath" value="/td[@class='cena']/a" />

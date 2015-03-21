@@ -15,9 +15,9 @@ public class MultiObserverControler {
 	private List<ShopControler> shopControlersList;
 
 //	private ShopControler moreleControler;
-//	private ShopControler arestControler;
+	private ShopControler arestControler;
 //	private ShopControler komputronikControler;
-	private ShopControler mediaMarktControler;
+//	private ShopControler mediaMarktControler;
 //	private ShopControler saturnControler;
 //	private ShopControler ikeaControler;
 
@@ -38,16 +38,16 @@ public class MultiObserverControler {
 		List<ShopControler> shopControlersList = new ArrayList<ShopControler>();
 
 //		moreleControler = new MoreleControler();
-//		arestControler = new ArestControler();
+		arestControler = new ArestControler();
 //		komputronikControler = new KomputronikControler();
-		mediaMarktControler = new MediaMarktControler();
+//		mediaMarktControler = new MediaMarktControler();
 //		saturnControler = new SaturnControler();
 //		ikeaControler = new IkeaControler();
 
 //		shopControlersList.add(moreleControler);
-//		shopControlersList.add(arestControler);
+		shopControlersList.add(arestControler);
 //		shopControlersList.add(komputronikControler);
-		shopControlersList.add(mediaMarktControler);
+//		shopControlersList.add(mediaMarktControler);
 //		shopControlersList.add(saturnControler);
 //		shopControlersList.add(ikeaControler);
 
