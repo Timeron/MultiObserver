@@ -15,15 +15,17 @@ public class MultiObserver {
 	public static long start = System.currentTimeMillis();
 	
 	public static void main(String[] args) {
+		String version = "v2.1.1";
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
 		LOG.info("#################################################");
 		LOG.info("#                                               #");
 		LOG.info("#   Nexus Multi Observer: " + dateFormat.format(start)
 				+ "   #");
+		LOG.info("#   Version:              " + version + "                #");
 		LOG.info("#                                               #");
 		LOG.info("#################################################");
-	
+
 		getObservedSites();
 	}
 	
