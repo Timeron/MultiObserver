@@ -49,11 +49,15 @@ public class ShopControler implements ShopControlerInterface {
 	public void runObserver() {
 		// pobieramy wszystkie linki pakietów
 		observedLinksPackages = this.shop.getShopLinksPackage();
-		this.observedSiteList = new ArrayList<ObservedSite>();
-		
-		for (ObservedLinksPackage observedLinksPackage : observedLinksPackages) {
-			prepareControler();
-			downloadObservedSitesFromUrl(observedLinksPackage, observedLinksPackage.getUrl());
+		if(!observedLinksPackages.isEmpty()){
+			this.observedSiteList = new ArrayList<ObservedSite>();
+			
+			for (ObservedLinksPackage observedLinksPackage : observedLinksPackages) {
+				prepareControler();
+				downloadObservedSitesFromUrl(observedLinksPackage, observedLinksPackage.getUrl());
+			}
+		}else{
+			LOG.warn("Site doesn't have any links");
 		}
 	}
 
@@ -76,7 +80,7 @@ public class ShopControler implements ShopControlerInterface {
 				objects = getArticlesFromDivs(observedLinksPackage, articlesDiv);
 			}
 			this.shop.addLinkCounter();
-			//jeśli na stronie nie ma już obiektów a przycisk next jest dostępny to przewij
+			//jeśli na stronie nie ma już obiektów a przycisk next jest dostępny to przerwij
 			next = (objects > 0) ? checkNextSite(nextHtmlAnchor) : null;
 		}while(next!=null);
 	}
@@ -195,32 +199,34 @@ public class ShopControler implements ShopControlerInterface {
 	public void saveObservedSites() {
 		ObservedSiteDAO observedSiteDAO = new ObservedSiteDAO();
 		ObservedSiteHistoryDAO observedSiteHistoryDAO = new ObservedSiteHistoryDAO();
-		for(int index=0; index<this.observedSiteList.size(); index++){
-			LOG.info("Dodano adres z hash = "+observedSiteList.get(index).getHashUrl()); //Błąd
-			//Sprawdzamy czy to nowy produkt z tej strony
-			if(!observedSiteDAO.checkIfHashExist(observedSiteList.get(index))){
-				this.shop.addNewArticleCounter();
-				this.shop.addArticleCounter();
-				observedSiteList.get(index).setTimestamp(new Date());
-				observedSiteDAO.save(observedSiteList.get(index));
-			}else{
-				//Produkty mogą być źle posortowane na stronie. Nie zapisujemy produktów które w wyniku przesunięcia na liście pojawiły się dwa razy.
-				if(!observedSiteDAO.siteWasAddedDoday(observedSiteList.get(index))){
+		if(this.observedSiteList != null){
+			for(int index=0; index < this.observedSiteList.size(); index++){
+				LOG.info("Dodano adres z hash = "+observedSiteList.get(index).getHashUrl()); //Błąd
+				//Sprawdzamy czy to nowy produkt z tej strony
+				if(!observedSiteDAO.checkIfHashExist(observedSiteList.get(index))){
+					this.shop.addNewArticleCounter();
 					this.shop.addArticleCounter();
-					//observedSiteList.get(index).getObservedSiteHistory().get(0).setId(observedSiteDAO.getId(observedSiteList.get(index)));  //ustawiamy id strony dla hisorii
-					observedSiteList.get(index).getObservedSiteHistory().get(0).getObservedSite().setId(observedSiteDAO.getId(observedSiteList.get(index)));
-					if(observedSiteHistoryDAO.priceChanged(observedSiteList.get(index).getObservedSiteHistory().get(0))){
-						observedSiteList.get(index).setId(observedSiteDAO.getId(observedSiteList.get(index)));
-						observedSiteList.get(index).setTimestamp(new Date());
-						observedSiteDAO.update(observedSiteList.get(index));
-						this.shop.addUpdatePriceCounter();
-						LOG.info("Nowa cena dodana dla produktu: "+observedSiteList.get(index).getArticleName());
-					}else{
-						LOG.info("Cena się nie zmieniła");
-					}
+					observedSiteList.get(index).setTimestamp(new Date());
+					observedSiteDAO.save(observedSiteList.get(index));
 				}else{
-					this.shop.addMovementCounter();
-					LOG.info("Wykryto przesunięcie na liście lub obiekt był dodany już dzisiaj");
+					//Produkty mogą być źle posortowane na stronie. Nie zapisujemy produktów które w wyniku przesunięcia na liście pojawiły się dwa razy.
+					if(!observedSiteDAO.siteWasAddedDoday(observedSiteList.get(index))){
+						this.shop.addArticleCounter();
+						//observedSiteList.get(index).getObservedSiteHistory().get(0).setId(observedSiteDAO.getId(observedSiteList.get(index)));  //ustawiamy id strony dla hisorii
+						observedSiteList.get(index).getObservedSiteHistory().get(0).getObservedSite().setId(observedSiteDAO.getId(observedSiteList.get(index)));
+						if(observedSiteHistoryDAO.priceChanged(observedSiteList.get(index).getObservedSiteHistory().get(0))){
+							observedSiteList.get(index).setId(observedSiteDAO.getId(observedSiteList.get(index)));
+							observedSiteList.get(index).setTimestamp(new Date());
+							observedSiteDAO.update(observedSiteList.get(index));
+							this.shop.addUpdatePriceCounter();
+							LOG.info("Nowa cena dodana dla produktu: "+observedSiteList.get(index).getArticleName());
+						}else{
+							LOG.info("Cena się nie zmieniła");
+						}
+					}else{
+						this.shop.addMovementCounter();
+						LOG.info("Wykryto przesunięcie na liście lub obiekt był dodany już dzisiaj");
+					}
 				}
 			}
 		}

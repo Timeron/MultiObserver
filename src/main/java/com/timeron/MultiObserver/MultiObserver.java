@@ -15,7 +15,7 @@ public class MultiObserver {
 	public static long start = System.currentTimeMillis();
 	
 	public static void main(String[] args) {
-		String version = "v2.1.1";
+		String version = "v2.1.3";
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
 		LOG.info("#################################################");

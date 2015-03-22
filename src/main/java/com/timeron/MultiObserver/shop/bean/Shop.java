@@ -1,6 +1,8 @@
 package com.timeron.MultiObserver.shop.bean;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -9,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import com.timeron.NexusDatabaseLibrary.Entity.ObservedLinksPackage;
 import com.timeron.NexusDatabaseLibrary.Entity.Site;
 import com.timeron.NexusDatabaseLibrary.dao.ObservedLinksPackageDAO;
+import com.timeron.NexusDatabaseLibrary.dao.SiteDAO;
 
 public class Shop implements ShopInterface{
 	
@@ -235,9 +238,16 @@ public class Shop implements ShopInterface{
 		ObservedLinksPackageDAO observedLinksPackageDAO = new ObservedLinksPackageDAO();
 		List<ObservedLinksPackage> ObservedLinksPackage;
 		
-		ObservedLinksPackage = observedLinksPackageDAO.getAll(this.shopId);
+		SiteDAO siteDAO = new SiteDAO();
+		this.site = siteDAO.getById(shopId);
+		if(site != null){
+			ObservedLinksPackage = observedLinksPackageDAO.getLinksByShopId(this.site);
+			return ObservedLinksPackage;
+		}else{
+			return Collections.emptyList();
+		}
 		
-		return ObservedLinksPackage;
+		
 	}
 
 
